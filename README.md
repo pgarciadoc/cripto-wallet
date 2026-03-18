@@ -64,7 +64,8 @@ src/
 * **Balance** → saldo por token
 * **Ledger** → registro de todas as movimentações
 
----
+---![database_modeling_schema](https://github.com/user-attachments/assets/9a6bb8fd-1df2-4375-82d4-2583029d83c6)
+
 
 ## 🔐 Autenticação
 
