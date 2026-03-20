@@ -11,7 +11,7 @@ export class WithdrawService {
     const amount = Number(data.amount);
 
     return this.prisma.$transaction(async (tx) => {
-      // 🔍 Wallet
+      // Wallet
       const wallet = await tx.wallet.findUnique({
         where: { userId },
       });
@@ -20,7 +20,7 @@ export class WithdrawService {
         throw new BadRequestException('Wallet not found');
       }
 
-      // 🔍 Balance
+      // Balance
       const balance = await tx.balance.findUnique({
         where: {
           walletId_token: {
@@ -37,7 +37,7 @@ export class WithdrawService {
       const oldBalance = Number(balance.amount);
       const newBalance = oldBalance - amount;
 
-      // 🔻 Débito
+      // Débito
       await tx.balance.update({
         where: {
           walletId_token: {
@@ -52,7 +52,7 @@ export class WithdrawService {
         },
       });
 
-      // 📒 Ledger
+      // Ledger
       await tx.ledger.create({
         data: {
           userId,
