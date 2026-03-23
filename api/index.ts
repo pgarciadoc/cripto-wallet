@@ -1,23 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
+import express, { Request, Response, RequestHandler } from 'express';
 
-const server = express();
+const expressApp = express();
 
-let app;
+let cachedServer: RequestHandler;
 
-async function createApp() {
-  if (!app) {
-    app = await NestFactory.create(AppModule, new ExpressAdapter(server));
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+async function bootstrap(): Promise<RequestHandler> {
+  if (!cachedServer) {
+    const app = await NestFactory.create(
+      AppModule,
+      new ExpressAdapter(expressApp),
+    );
+
     await app.init();
+    cachedServer = expressApp as unknown as RequestHandler;
   }
-  return server;
+
+  return cachedServer!;
 }
 
-export default async function handler(req, res) {
-  const app = await createApp();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-argument
-  return app(req, res);
+export default async function handler(req: Request, res: Response) {
+  const server = await bootstrap();
+  return server(req, res, () => {});
 }
