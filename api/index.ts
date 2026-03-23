@@ -1,13 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import express, { Request, Response, RequestHandler } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 
 const expressApp = express();
 
-let cachedServer: RequestHandler;
+let cachedServer: any;
 
-async function bootstrap(): Promise<RequestHandler> {
+async function bootstrap() {
   if (!cachedServer) {
     const app = await NestFactory.create(
       AppModule,
@@ -15,13 +15,19 @@ async function bootstrap(): Promise<RequestHandler> {
     );
 
     await app.init();
-    cachedServer = expressApp as unknown as RequestHandler;
+    cachedServer = expressApp;
   }
 
-  return cachedServer!;
+  return cachedServer;
 }
 
 export default async function handler(req: Request, res: Response) {
   const server = await bootstrap();
-  return server(req, res, () => {});
+
+  return new Promise<void>((resolve, reject) => {
+    server(req, res, (err: any) => {
+      if (err) return reject(err);
+      resolve();
+    });
+  });
 }

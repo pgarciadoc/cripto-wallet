@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { PrismaModule } from './prisma/prisma.module';
+//import { PrismaModule } from './prisma/prisma.module';
 import { SwapModule } from './swap/swap.module';
 import { WalletModule } from './wallet/wallet.module';
 import { LedgerModule } from './ledger/ledger.module';
@@ -17,7 +17,7 @@ import { WithdrawModule } from './withdraw/withdraw.module';
     LedgerModule,
     WebhooksModule,
     WithdrawModule,
-    PrismaModule,
+    //PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
