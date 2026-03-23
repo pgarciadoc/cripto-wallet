@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { WebhookService } from './webhooks.service';
 import { DepositDto } from './dto/deposit.dto';
-import { JwtGuard } from 'src/auth/jwt.guard';
+import { JwtGuard } from '../auth/jwt.guard';
 import { Request } from 'express';
 
 interface RequestWithUser extends Request {

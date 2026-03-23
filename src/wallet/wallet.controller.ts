@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { WalletService } from './wallet.service';
-import { JwtGuard } from 'src/auth/jwt.guard';
+import { JwtGuard } from '../auth/jwt.guard';
 
 @Controller('wallet')
 export class WalletController {
