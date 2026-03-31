@@ -1,43 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Cripto Wallet</title>
 </head>
 <body>
-    <div class="login-container">
-        <h1>LOGIN</h1>
-        
-        <div class="input-group">
-            <label for="email">EMAIL</label>
-            <input type="email" id="email" placeholder="seu_email@email.com">
-        </div>
-        
-        <div class="input-group">
-            <label for="password">PASSWORD</label>
-            <input type="password" id="password" placeholder="••••••••">
-        </div>
-        
-        <button onclick="login()" type="button">SIGN IN</button>
-        
-        <p id="message"></p>
-
-        <div class="divider">OR</div>
-        
-        <div class="social-login">
-            <div class="social-btn">G</div>
-            <div class="social-btn">F</div>
-            <div class="social-btn">X</div>
-        </div>
-        
-        <div class="footer">
-            Don't have an account? <a href="register.html">Sign up</a>
+    <div class="container">
+        <div class="row d-flex justify-content-center p-5">
+            <div class="col-4 d-flex justify-content-center mx-auto">
+                <a class="btn btn-primary p-3" href="login.html" role="button">LOGIN</a>   
+            </div>
+            <div class="col-4 d-flex justify-content-center mx-auto">
+                <a class="btn btn-primary p-3" href="register.html" role="button">CRIAR</a>
+            </div>
         </div>
     </div>
-    <script src="../pages/script.js"></script>
+  <script src="../pages/script.js"></script>
 </body>
-
 </html>
-
